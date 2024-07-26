@@ -6,4 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\Images\can1.jpg" />
+    <None Include="wwwroot\css\Images\can2.jpg" />
+    <None Include="wwwroot\css\Images\can3.jpg" />
+    <None Include="wwwroot\css\Images\can4.jpg" />
+    <None Include="wwwroot\css\Images\can5.jpg" />
+    <None Include="wwwroot\css\Images\can6.jpg" />
+  </ItemGroup>
+
 </Project>
