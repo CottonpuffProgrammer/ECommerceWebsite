@@ -101,7 +101,7 @@ namespace eCommerceWebsite.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmedAsync(int id)
         {
-            CannedFood foodToDelete = await _context.cannedFoods.FindAsync(id);
+            CannedFood? foodToDelete = await _context.cannedFoods.FindAsync(id);
             
             if (foodToDelete != null)
             {
@@ -113,6 +113,18 @@ namespace eCommerceWebsite.Controllers
 
             TempData["Message"] = "This was already deleted!";
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            CannedFood? foodDetails = await _context.cannedFoods.FindAsync(id);
+
+            if (foodDetails == null)
+            {
+                return NotFound();
+            }
+
+            return View(foodDetails);
         }
     }
 }
