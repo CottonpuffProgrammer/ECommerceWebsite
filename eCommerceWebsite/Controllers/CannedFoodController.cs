@@ -78,10 +78,41 @@ namespace eCommerceWebsite.Controllers
                 _context.cannedFoods.Update(foodModel);
                 await _context.SaveChangesAsync();
 
+                TempData["Message"] = $"{foodModel.FoodName} was updated successfully!";
                 return RedirectToAction("Index");
             }
 
             return View(foodModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            CannedFood? foodToDelete = await _context.cannedFoods.FindAsync(id);
+
+            if (foodToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return View(foodToDelete);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmedAsync(int id)
+        {
+            CannedFood foodToDelete = await _context.cannedFoods.FindAsync(id);
+            
+            if (foodToDelete != null)
+            {
+                _context.cannedFoods.Remove(foodToDelete);
+                await _context.SaveChangesAsync();
+                TempData["Message"] = foodToDelete.FoodName + " was deleted successfully!";
+                return RedirectToAction("Index");
+            }
+
+            TempData["Message"] = "This was already deleted!";
+            return RedirectToAction("Index");
         }
     }
 }
