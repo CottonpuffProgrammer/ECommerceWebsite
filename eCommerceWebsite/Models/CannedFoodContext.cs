@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using eCommerceWebsite.Models;
 
 namespace eCommerceWebsite.Models
 {
@@ -10,5 +11,7 @@ namespace eCommerceWebsite.Models
         }
 
         public DbSet<CannedFood> cannedFoods { get; set; }
+
+        public DbSet<Member> members { get; set; }
     }
 }
