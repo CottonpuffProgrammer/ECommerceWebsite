@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerceWebsite.Models;
 
@@ -10,9 +11,11 @@ using eCommerceWebsite.Models;
 namespace eCommerceWebsite.Migrations
 {
     [DbContext(typeof(CannedFoodContext))]
-    partial class CannedFoodContextModelSnapshot : ModelSnapshot
+    [Migration("20240830024511_AddedMember")]
+    partial class AddedMember
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

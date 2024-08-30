@@ -10,5 +10,7 @@ namespace eCommerceWebsite.Models
         }
 
         public DbSet<CannedFood> cannedFoods { get; set; }
+
+        public DbSet<Member> members { get; set; }
     }
 }
