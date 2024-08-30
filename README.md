@@ -10,7 +10,6 @@ Currently, I am in the process of implementing basic [CRUD Functionality](https:
 - A Computer with Windows 10/11
 - The latest version of [Visual Studio](https://visualstudio.microsoft.com/downloads/) (Community Edition)
 - ASP.NET Development Kit installed via the Visual Studio Installer (Comes with Community Edition download)![aspdotnet](https://github.com/user-attachments/assets/b333c11e-06ff-4965-b4c4-890f9fe6a07a)
-(If above does not work try installing the .NET Desktop Development Kit as well, also seen in image)
 
 ## Helpful Resources
 - [ASP.NET MVC](https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-8.0)
