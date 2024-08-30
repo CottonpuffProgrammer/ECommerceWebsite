@@ -56,5 +56,32 @@ namespace eCommerceWebsite.Controllers
 
             return View(food);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            CannedFood? foodToEdit = await _context.cannedFoods.FindAsync(id);
+
+            if (foodToEdit == null)
+            {
+                return NotFound();
+            }
+
+            return View(foodToEdit);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(CannedFood foodModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.cannedFoods.Update(foodModel);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(foodModel);
+        }
     }
 }
