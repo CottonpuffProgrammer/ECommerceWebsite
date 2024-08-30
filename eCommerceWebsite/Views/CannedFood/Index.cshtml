@@ -1,0 +1,41 @@
+﻿@model IEnumerable<eCommerceWebsite.Models.CannedFood>
+
+@{
+    ViewData["Title"] = "Canned Food Menu";
+}
+
+<h1>Canned Food Menu</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="CannedFood">Create Food</a>
+</p>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (CannedFood item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodPrice)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FoodId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FoodId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FoodId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
