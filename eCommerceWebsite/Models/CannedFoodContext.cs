@@ -13,5 +13,6 @@ namespace eCommerceWebsite.Models
         public DbSet<CannedFood> cannedFoods { get; set; }
 
         public DbSet<Member> members { get; set; }
+        public DbSet<eCommerceWebsite.Models.LoginViewModel> LoginViewModel { get; set; } = default!;
     }
 }

@@ -21,6 +21,8 @@ namespace eCommerceWebsite.Models
 
     public class RegisterViewModel
     {
+        // For some reason, is required in the
+        // generation of a view model
         [Key]
         public int Id { get; set; }
 
@@ -44,5 +46,23 @@ namespace eCommerceWebsite.Models
         [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class LoginViewModel
+    {
+        // For some reason, is required in the
+        // generation of a view model
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [StringLength(100)]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(75, MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }

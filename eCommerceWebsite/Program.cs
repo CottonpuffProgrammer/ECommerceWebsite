@@ -5,6 +5,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Allow session access in Views
+builder.Services.AddHttpContextAccessor();
+
+// Add Session - Part 1/2
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 // Database related
 builder.Services.AddDbContext<CannedFoodContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -25,6 +33,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+// Add Session - Part 2/2
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
