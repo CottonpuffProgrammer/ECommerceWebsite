@@ -20,7 +20,10 @@ namespace eCommerceWebsite.Controllers
             const int PageOffset = 1; // Need page offset to use figure out correct page
             
             int currPage = id ?? 1; // Set currPage to id if it has a value, otherwise use 1
-            
+
+            int totalNumberofFood = await _context.cannedFoods.CountAsync();
+            double value = Math.Ceiling((double)totalNumberofFood / FoodToDisplay);
+            int lastPage = Convert.ToInt32(value);
 
 
 
@@ -31,7 +34,8 @@ namespace eCommerceWebsite.Controllers
                                            .ToListAsync();
 
             // Show them on the page
-            return View(food);
+            MenuViewModel menuModel = new(food, lastPage, currPage);
+            return View(menuModel);
         }
 
         /// <summary>

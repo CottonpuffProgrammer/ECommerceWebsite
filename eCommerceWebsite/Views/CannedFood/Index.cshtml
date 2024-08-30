@@ -1,4 +1,4 @@
-﻿@model IEnumerable<eCommerceWebsite.Models.CannedFood>
+﻿@model MenuViewModel
 
 @{
     ViewData["Title"] = "Canned Food Menu";
@@ -17,22 +17,22 @@
 <p>
     <a asp-action="Create" asp-controller="CannedFood">Create Food</a>
 </p>
-@if (Model.Count() != 0)
+@if (Model.Food.Count() != 0)
 {
     <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FoodName)
+                    @Html.DisplayNameFor(model => model.Food[0].FoodName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FoodPrice)
+                    @Html.DisplayNameFor(model => model.Food[0].FoodPrice)
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (CannedFood item in Model)
+            @foreach (CannedFood item in Model.Food)
             {
                 <tr>
                     <td>
@@ -55,3 +55,23 @@ else
 {
     <h2>There are no games on this page, what are you doing here?</h2>
 }
+
+<nav aria-label="Canned Food Menu Pages">
+    <ul class="pagination">
+    @for (int i = 1; i <= Model.LastPage; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <li class="page-item active">
+                <a class="page-link">@i</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+            <a class="page-link" asp-action="Index" asp-route-id="@i">@i</a>
+            </li>
+        }
+    }
+    </ul>
+</nav>
