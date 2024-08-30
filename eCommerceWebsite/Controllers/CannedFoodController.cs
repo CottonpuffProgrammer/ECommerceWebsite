@@ -14,13 +14,28 @@ namespace eCommerceWebsite.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
+            const int FoodToDisplay = 3;
+            const int PageOffset = 1; // Need page offset to use figure out correct page
+            
+            int currPage = id ?? 1; // Set currPage to id if it has a value, otherwise use 1
+
+            int totalNumberofFood = await _context.cannedFoods.CountAsync();
+            double value = Math.Ceiling((double)totalNumberofFood / FoodToDisplay);
+            int lastPage = Convert.ToInt32(value);
+
+
+
             // Get all food from the Database
-            List<CannedFood> food = await _context.cannedFoods.ToListAsync();
+            List<CannedFood> food = await _context.cannedFoods
+                                           .Skip(FoodToDisplay * (currPage - PageOffset))
+                                           .Take(FoodToDisplay)
+                                           .ToListAsync();
 
             // Show them on the page
-            return View(food);
+            MenuViewModel menuModel = new(food, lastPage, currPage);
+            return View(menuModel);
         }
 
         /// <summary>
